@@ -9,10 +9,8 @@ package frc.robot.subsystems;
 
 import frc.robot.RobotMap;
 
-// import edu.wpi.first.wpilibj.motorcontrol.Talon;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.ControlMode;
 
 /**
  * Add your docs here.
@@ -21,63 +19,33 @@ public class DriveSubsystem extends SubsystemBase {
 
   public boolean slow;
   
-  TalonSRX Left1 = new TalonSRX(RobotMap.Left1);
-  TalonSRX Left2 = new TalonSRX(RobotMap.Left2);
-  TalonSRX Right1 = new TalonSRX(RobotMap.Right1);
-  TalonSRX Right2 = new TalonSRX(RobotMap.Right2);
+  Talon Left1 = new Talon(RobotMap.Left1);
+  Talon Left2 = new Talon(RobotMap.Left2);
+  Talon Right1 = new Talon(RobotMap.Right1);
+  Talon Right2 = new Talon(RobotMap.Right2);
 
-  // public void initDefaultCommand() {
-  //   slow = false;
-  // }
+  public void initDefaultCommand() {
+    slow = false;
+  }
+  
 
   public void TankDrive (double left, double right) {
 
-    // if (slow) {
-    //   left *= 0.80;
-    //   right *= 0.80;
-    // }
+    if (slow) {
+      left *= 1.00;
+      right *= 1.00;
+    }
 
     // Drive the left and right sides of the talons
-    Left1.set(ControlMode.PercentOutput,-left);
-    Left2.set(ControlMode.PercentOutput,-left);
-    Right1.set(ControlMode.PercentOutput,right * 0.7);
-    Right2.set(ControlMode.PercentOutput,right * 0.7);
-
-    // Left1.configPeakOutputForward(1);
-    // Left1.configPeakOutputReverse(-1);
-    // Left2.configPeakOutputForward(1);
-    // Left2.configPeakOutputReverse(-1);
-    // Right1.configPeakOutputForward(1);
-    // Right1.configPeakOutputReverse(-1);
-    // Right2.configPeakOutputForward(1);
-    // Right2.configPeakOutputReverse(-1);
-
-
-    
-    // Left1.setInverted(true);
-    // Left2.setInverted(true);
-    // Right1.setInverted(false);
-    // Right2.setInverted(false);
-
-
-    // System.out.println("Running Left:" + left + "\tRunning Right:" + right);
+    Left1.set(-left);
+    Left2.set(-left);
+    Right1.set(right);
+    Right2.set(right);
+    //System.out.println("Running Left:" + left + "\tRunning Right:" + right);
   }
 
-  // public void setMotorPercent(double percent) {
-
-  //   Left1.set(ControlMode.PercentOutput, percent);
-  //   Left2.set(ControlMode.PercentOutput, percent);
-  //   Right1.set(ControlMode.PercentOutput, percent);
-  //   Right2.set(ControlMode.PercentOutput, percent);
-
-  // }
-
-
-    
-
-
   public void ArcadeDrive (double speed, double turn) {
-    TankDrive((speed - turn) * 0.5, (speed + turn) * 0.5);
+    TankDrive((speed - turn), (speed + turn));
   }
 
 }
