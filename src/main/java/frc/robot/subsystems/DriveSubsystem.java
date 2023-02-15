@@ -34,6 +34,8 @@ public class DriveSubsystem extends SubsystemBase {
     if (slow) {
       left *= 1.00;
       right *= 1.00;
+      public void TankDrive (double left, double right) {
+
     }
 
     // Drive the left and right sides of the talons

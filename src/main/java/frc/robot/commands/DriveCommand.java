@@ -58,7 +58,7 @@ public class DriveCommand extends CommandBase {
     //   fCounter = 0;
     //   bCounter = 0;
     // }
-    Robot.DriveSubsystem.ArcadeDrive(OI.getSpeed(), OI.getTurn());
+    Robot.DriveSubsystem.ArcadeDrive(OI.getSpeed() * 0.4, OI.getTurn() * 0.4);
 
   }
 
